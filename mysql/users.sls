@@ -4,7 +4,7 @@ wordpress_mysql_user:
     - password: wppass
     - host: 192.168.50.11
     - connection_user: root
-    - connection_pass: password
+    - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
 
 wordpress_user_grants:
@@ -14,7 +14,7 @@ wordpress_user_grants:
     - grant: ALL PRIVILEGES
     - host: 192.168.50.11
     - connection_user: root
-    - connection_pass: password
+    - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
 
 richardl_mysql_user:
@@ -23,7 +23,7 @@ richardl_mysql_user:
     - password: passpass
     - host: localhost
     - connection_user: root
-    - connection_pass: password
+    - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
 
 richardl_user_grants:
@@ -33,6 +33,5 @@ richardl_user_grants:
     - grant: ALL PRIVILEGES
     - host: localhost
     - connection_user: root
-    - connection_pass: password
+    - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
-

@@ -3,5 +3,5 @@ wordpress_database:
     - name: wordpress
     - host: 192.168.50.12
     - connection_user: root
-    - connection_pass: password
+    - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8

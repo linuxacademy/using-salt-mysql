@@ -11,7 +11,7 @@
 
 # this is only for the mysqld standalone daemon
 [mysqld]
-bind-address = 192.168.50.12
+bind-address = {{ pillar['mysql']['server']['bind'] }}
 
 # this is only for embedded server
 [embedded]

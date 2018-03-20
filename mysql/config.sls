@@ -4,5 +4,6 @@ server_config:
   file.managed:
     - name: {{ mysql.serverconfig }}
     - source: {{ mysql.serverconfigsource }}
+    - template: jinja
     - require:
       - pkg: {{ mysql.server }}

@@ -41,7 +41,7 @@ skip-external-locking
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-bind-address = 192.168.50.12
+bind-address = {{ pillar['mysql']['server']['bind'] }}
 #
 # * Fine Tuning
 #

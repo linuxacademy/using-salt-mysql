@@ -1,37 +1,22 @@
-wordpress_mysql_user:
+{% for user, arg in salt['pillar.get']('mysql:users', {}).iteritems() %}
+
+{{ user }}_mysql_user:
   mysql_user.present:
-    - name: wpuser
-    - password: wppass
-    - host: 192.168.50.11
+    - name: {{ user }}
+    - password: {{ arg.password }}
+    - host: {{ arg.host }}
     - connection_user: root
     - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
 
-wordpress_user_grants:
+{{ user }}_user_grants:
   mysql_grants.present:
-    - database: wordpress.*
-    - user: wpuser
-    - grant: ALL PRIVILEGES
-    - host: 192.168.50.11
+    - database: {{ arg.database }}
+    - user: {{ user }}
+    - grant: {{ arg.grants }}
+    - host: {{ arg.host }}
     - connection_user: root
     - connection_pass: {{ pillar['mysql']['root']['password'] }}
     - connection_charset: utf8
 
-richardl_mysql_user:
-  mysql_user.present:
-    - name: richardl
-    - password: passpass
-    - host: localhost
-    - connection_user: root
-    - connection_pass: {{ pillar['mysql']['root']['password'] }}
-    - connection_charset: utf8
-
-richardl_user_grants:
-  mysql_grants.present:
-    - database: wordpress.*
-    - user: richardl
-    - grant: ALL PRIVILEGES
-    - host: localhost
-    - connection_user: root
-    - connection_pass: {{ pillar['mysql']['root']['password'] }}
-    - connection_charset: utf8
+{% endfor %}
